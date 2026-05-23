@@ -1,0 +1,29 @@
+# Render Blueprint — PrepWise API
+# Docs: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: prepwise-api
+    runtime: node
+    region: singapore
+    plan: free
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: CLIENT_URL
+        sync: false
+      - key: CLIENT_URLS
+        sync: false
